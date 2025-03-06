@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90d98972df2a0a849a19f82e1786075b, type: 3}
-  m_Name: BasicDoomGuy
+  m_Name: ChainsawDoomGuy
   m_EditorClassIdentifier: 
-  icone: {fileID: 21300000, guid: ab0d9136774ebb942b8330e657f08ddd, type: 3}
-  prefab: {fileID: 3945740762864311332, guid: a9a65cbfc58356a459bb35480398ba35, type: 3}
-  cost: 1
+  icone: {fileID: 21300000, guid: e0e3cb118f0dde2459e642a16552b3cf, type: 3}
+  prefab: {fileID: 7419986471164922924, guid: 236c12c19d1e49d41b19e9a0dc868d00, type: 3}
+  cost: 2
