@@ -25,6 +25,9 @@ public class CardHolderManager : MonoBehaviour
     private void CreateCard (int i)
     {
         var card = Instantiate(_card, _cardHolderPosiyion);
+        CardManager cardManager = card.GetComponent<CardManager>(); 
+
+        cardManager.CardSO = _cardSO[i];
 
         _plantedCards[i] = card;
 

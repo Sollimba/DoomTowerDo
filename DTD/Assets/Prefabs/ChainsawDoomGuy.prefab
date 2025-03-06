@@ -117,6 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3880105974604648774}
+  - component: {fileID: 7557052239395707740}
   m_Layer: 0
   m_Name: ChainsawDoomGuy
   m_TagString: Untagged
@@ -140,3 +141,17 @@ Transform:
   - {fileID: 5679952556907229756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7557052239395707740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419986471164922924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bff1f01c77c1d0478f9fb9a78ab6a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingSize: {x: 2, y: 2}
+  _renderer: {fileID: 1488628000897871100}

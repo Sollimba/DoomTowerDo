@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2238893219612015513}
+  - component: {fileID: 4400083074340481208}
   m_Layer: 0
   m_Name: BacisDoomguy
   m_TagString: Untagged
@@ -32,6 +33,20 @@ Transform:
   - {fileID: 4411318912751836896}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4400083074340481208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945740762864311332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bff1f01c77c1d0478f9fb9a78ab6a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buildingSize: {x: 2, y: 2}
+  _renderer: {fileID: 2593115879216246182}
 --- !u!1 &4888615571983700692
 GameObject:
   m_ObjectHideFlags: 0
