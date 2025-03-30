@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class MiningState : MinerState
+public class MiningState : State
 {
     private ResourceCounter _resourceCounter;
 

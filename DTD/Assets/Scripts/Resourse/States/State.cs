@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public abstract class MinerState : MonoBehaviour
+public abstract class State : MonoBehaviour
 {
-    [SerializeField] private MinerTransition[] _transition;
+    [SerializeField] private Transition[] _transition;
 
     public void Enter()
     {
@@ -27,7 +27,7 @@ public abstract class MinerState : MonoBehaviour
         }
     }
 
-    public MinerState GetNextState()
+    public State GetNextState()
     {
         foreach (var transition in _transition)
         {

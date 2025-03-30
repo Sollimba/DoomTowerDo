@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MiningTransition : MinerTransition
+public class WorkingTransition : Transition
 {
     private bool _isBuildingPlaced;
 

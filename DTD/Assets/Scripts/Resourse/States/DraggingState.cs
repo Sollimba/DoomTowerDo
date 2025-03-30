@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DraggingState : MinerState
+public class DraggingState : State
 {
     void Update()
     {
