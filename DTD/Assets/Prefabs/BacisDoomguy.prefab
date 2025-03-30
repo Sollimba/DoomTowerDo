@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2238893219612015513}
   - component: {fileID: 4400083074340481208}
+  - component: {fileID: 3742235168750117317}
+  - component: {fileID: -3119421220108293204}
+  - component: {fileID: -6698756399420456149}
+  - component: {fileID: -8991642376274343842}
   m_Layer: 0
   m_Name: BacisDoomguy
   m_TagString: Untagged
@@ -47,6 +51,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildingSize: {x: 2, y: 2}
   _renderer: {fileID: 2593115879216246182}
+--- !u!114 &3742235168750117317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945740762864311332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f62553ececdbe4aaad8bbfc0099a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firstState: {fileID: -3119421220108293204}
+--- !u!114 &-3119421220108293204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945740762864311332}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fd32efcd0a7e6749aab7b469be334ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transition:
+  - {fileID: -6698756399420456149}
+--- !u!114 &-6698756399420456149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945740762864311332}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f184f432360f34f8a010742636b774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nextState: {fileID: -8991642376274343842}
+--- !u!114 &-8991642376274343842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945740762864311332}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4cf952ed93169f469372283d024e5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transition: []
 --- !u!1 &4888615571983700692
 GameObject:
   m_ObjectHideFlags: 0
