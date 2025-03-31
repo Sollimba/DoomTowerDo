@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class AttackingState : State
+public class TurretAttackingState : State
 {
     [SerializeField] private GameObject _projectile;
     [SerializeField] private Transform _projectileSpawnPosition;

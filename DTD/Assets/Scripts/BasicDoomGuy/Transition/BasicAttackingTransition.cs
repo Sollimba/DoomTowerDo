@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BasicAttackingTransition : Transition
 {
-    private LineController _lineController;
+    private LineEnemyDetector _lineController;
     private WaveSpawner _waveSpawner;
 
     private void OnEnable()

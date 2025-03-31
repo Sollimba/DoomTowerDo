@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LineController : MonoBehaviour
+public class LineEnemyDetector : MonoBehaviour
 {
     public int EnemiesAlive { get; set; }
 

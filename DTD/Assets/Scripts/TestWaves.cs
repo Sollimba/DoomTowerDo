@@ -5,7 +5,7 @@ using UnityEngine;
 public class TestWaves : MonoBehaviour
 {
     private WaveSpawner _waveSpawner;
-    private LineController _lineController;
+    private LineEnemyDetector _lineController;
 
     private void Awake()
     {

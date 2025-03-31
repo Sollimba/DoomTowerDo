@@ -5,8 +5,8 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Waves[] _waves;
-    [SerializeField] private LineController[] _lineControllers;
-    public LineController[] LineControllers { get => _lineControllers; }
+    [SerializeField] private LineEnemyDetector[] _lineControllers;
+    public LineEnemyDetector[] LineControllers { get => _lineControllers; }
 
     private static WaveSpawner _instance;
     public static WaveSpawner Instance { get { return _instance; } }
@@ -41,7 +41,7 @@ public class WaveSpawner : MonoBehaviour
                 _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
                 .NeededSpawner.transform.position, Quaternion.identity);
             _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
-                .NeededSpawner.GetComponent<LineController>().EnemiesAlive++;
+                .NeededSpawner.GetComponent<LineEnemyDetector>().EnemiesAlive++;
             _enemiesLeftToSpawn--;
             _currentEnemyIndex++;
             StartCoroutine(SpawnEnemyInWave());

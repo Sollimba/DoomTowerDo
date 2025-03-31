@@ -5,6 +5,7 @@ using UnityEngine;
 public class TurretProjectile : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
+    [SerializeField] private int _damage;
 
     private void Awake()
     {
@@ -18,9 +19,11 @@ public class TurretProjectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TestWaves testWaves = other.GetComponent<TestWaves>();
-        if (testWaves != null)
-            Destroy(other.gameObject);
+        EnemySettings enemySettings = other.GetComponent<EnemySettings>();
+        if (enemySettings != null)
+        {
+            enemySettings.ReceiveDamage(_damage);
             Destroy(this.gameObject);
+        }
     }
 }
