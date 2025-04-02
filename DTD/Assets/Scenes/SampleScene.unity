@@ -1354,16 +1354,9 @@ MonoBehaviour:
     - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
       _neededSpawner: {fileID: 1883859595}
       _spawnDelay: 1
-    - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
-      _neededSpawner: {fileID: 1006031606}
-      _spawnDelay: 1
   - _waveSettings:
     - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
-      _neededSpawner: {fileID: 2099603222}
-      _spawnDelay: 1
-  - _waveSettings:
-    - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
-      _neededSpawner: {fileID: 2099603222}
+      _neededSpawner: {fileID: 1883859595}
       _spawnDelay: 1
     - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
       _neededSpawner: {fileID: 1883859595}
