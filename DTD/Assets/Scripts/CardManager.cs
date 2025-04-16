@@ -19,11 +19,15 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
     private bool _isAvailableToBuild;
 
     private ControllerBuilding _controllerBuilding;
+    private ResourceCounter _resourceCounter;
+
+    public bool IsAbleToPlant { get; set; }
 
     private void Awake()
     {
         _controllerBuilding = ControllerBuilding.Instance;
         _controllerBuilding.Grid = new Building[_gridSize.x, _gridSize.y];
+        _resourceCounter = ResourceCounter.Instance;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -84,6 +88,8 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
 
             WorkingTransition workingTransition = _draggingBuilding.GetComponent<WorkingTransition>();
             workingTransition.IsBuildingPlaced = true;
+
+            _resourceCounter.SpendResources(_cardSO.cost);
         }
     }
 

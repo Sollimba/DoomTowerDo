@@ -1,16 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicEnemyAttackingState : State
 {
     private Building _buildSettings;
     [SerializeField] private int _damage;
-    private EnemyWalkingTransition _enemyWalkingTransition;
+
+    private BasicEnemyWalkingState _walkingState;
 
     private void Awake()
     {
-        _enemyWalkingTransition = GetComponent<EnemyWalkingTransition>();
+        _walkingState = GetComponent<BasicEnemyWalkingState>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,7 +19,6 @@ public class BasicEnemyAttackingState : State
         if (building != null)
         {
             _buildSettings = building;
-
             StartCoroutine(AttackBuilding());
         }
     }
@@ -28,21 +27,16 @@ public class BasicEnemyAttackingState : State
     {
         if (_buildSettings.CurrentHealth > 0)
         {
-            _enemyWalkingTransition.IsAbleToGo = false;
+            _walkingState.CanMove = false; // Останавливаем врага
             yield return new WaitForSeconds(1);
-            if(_buildSettings != null)
+            if (_buildSettings != null)
                 _buildSettings.ReceiveDamage(_damage);
             StartCoroutine(AttackBuilding());
         }
         else
         {
             _buildSettings = null;
-            _enemyWalkingTransition.IsAbleToGo = true;
+            _walkingState.CanMove = true; // Включаем движение снова
         }
     }
-
-    private void Update()
-    {
-        
-    }
-} 
+}

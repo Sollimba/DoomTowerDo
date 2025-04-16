@@ -6,6 +6,7 @@ public class TurretProjectile : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed;
     [SerializeField] private int _damage;
+    [SerializeField] private int _resourceReward = 1;
 
     private void Awake()
     {
@@ -23,6 +24,10 @@ public class TurretProjectile : MonoBehaviour
         if (enemySettings != null)
         {
             enemySettings.ReceiveDamage(_damage);
+
+            // ƒобавл€ем ресурсы за каждое попадание
+            ResourceCounter.Instance.ReceiveResources(_resourceReward);
+
             Destroy(this.gameObject);
         }
     }

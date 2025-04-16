@@ -28,7 +28,7 @@ public class Building : MonoBehaviour
         _spriteRenderer.color = Color.white;
     }
 
-    public void ReceiveDamage(int damage)
+    public void ReceiveDamage(int damage)//проблема 
     {
         CurrentHealth -= damage;
         if (CurrentHealth < 1)
