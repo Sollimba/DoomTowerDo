@@ -32,64 +32,76 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
 
     public void OnDrag(PointerEventData eventData)
     {
-        var groundPlane = new Plane(Vector3.up, Vector3.zero);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (groundPlane.Raycast(ray, out float pos))
+        if (IsAbleToPlant)
         {
-            Vector3 worldPosition = ray.GetPoint(pos);
-            int x = Mathf.RoundToInt(worldPosition.x);
-            int z = Mathf.RoundToInt(worldPosition.z);
+            if (_draggingBuilding != null)
+            {
+                var groundPlane = new Plane(Vector3.up, Vector3.zero);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (x < 0 || x > _gridSize.x - _building.BuildingSize.x)
-                _isAvailableToBuild = false;
-            else if (z < 0 || z > _gridSize.y - _building.BuildingSize.y)
-                _isAvailableToBuild = false;
-            else
-                _isAvailableToBuild = true;
+                if (groundPlane.Raycast(ray, out float pos))
+                {
+                    Vector3 worldPosition = ray.GetPoint(pos);
+                    int x = Mathf.RoundToInt(worldPosition.x);
+                    int z = Mathf.RoundToInt(worldPosition.z);
 
-            if(_isAvailableToBuild && IsPlaceTaken(x, z)) _isAvailableToBuild = false;
+                    if (x < 0 || x > _gridSize.x - _building.BuildingSize.x)
+                        _isAvailableToBuild = false;
+                    else if (z < 0 || z > _gridSize.y - _building.BuildingSize.y)
+                        _isAvailableToBuild = false;
+                    else
+                        _isAvailableToBuild = true;
 
-            if ((x% 2 == 1) ||  (z % 2 == 1)) _isAvailableToBuild = false;
+                    if (_isAvailableToBuild && IsPlaceTaken(x, z)) _isAvailableToBuild = false;
 
-            _draggingBuilding.transform.position = new Vector3(x, 0, z);
+                    if ((z % 2 == 1) || (x % 2 == 1)) _isAvailableToBuild = false;
 
-            _building.SetColor(_isAvailableToBuild);
+                    _draggingBuilding.transform.position = new Vector3(x, 0, z);
+
+                    _building.SetColor(_isAvailableToBuild);
+                }
+            }
         }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _draggingBuilding = Instantiate(_cardSO.prefab, Vector3.zero, Quaternion.identity);
-        _building = _draggingBuilding.GetComponent<Building>();
+        if (IsAbleToPlant)
+        {
+            _draggingBuilding = Instantiate(_cardSO.prefab, Vector3.zero, Quaternion.identity);
+            _building = _draggingBuilding.GetComponent<Building>();
 
-        var groundPlane = new Plane(Vector3.up, Vector3.zero);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            var groundPlane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (groundPlane.Raycast(ray, out float pos))
-        { 
-            Vector3 worldPosition = ray.GetPoint(pos);
-            int x = Mathf.RoundToInt(worldPosition.x);
-            int z = Mathf.RoundToInt(worldPosition.z);
+            if (groundPlane.Raycast(ray, out float pos))
+            {
+                Vector3 worldPosition = ray.GetPoint(pos);
+                int x = Mathf.RoundToInt(worldPosition.x);
+                int z = Mathf.RoundToInt(worldPosition.z);
 
-            _draggingBuilding.transform. position = new Vector3(x, 0, z);
+                _draggingBuilding.transform.position = new Vector3(x, 0, z);
+            }
+            _draggingBuilding.GetComponent<BoxCollider>().enabled = false;
         }
-         
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(!_isAvailableToBuild)
-            Destroy(_draggingBuilding);
-        else
+        if (IsAbleToPlant)
         {
-            _controllerBuilding.Grid[(int)_draggingBuilding.transform.position.x, (int)_draggingBuilding.transform.position.z] = _building;
-            _building.ResetColor();
+            if (!_isAvailableToBuild)
+                Destroy(_draggingBuilding);
+            else
+            {
+                _controllerBuilding.Grid[(int)_draggingBuilding.transform.position.x, (int)_draggingBuilding.transform.position.z] = _building;
+                _building.ResetColor();
 
-            WorkingTransition workingTransition = _draggingBuilding.GetComponent<WorkingTransition>();
-            workingTransition.IsBuildingPlaced = true;
+                WorkingTransition workingTransition = _draggingBuilding.GetComponent<WorkingTransition>();
+                workingTransition.IsBuildingPlaced = true;
 
-            _resourceCounter.SpendResources(_cardSO.cost);
+                _resourceCounter.SpendResources(_cardSO.cost);
+            }
         }
     }
 

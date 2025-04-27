@@ -746,6 +746,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 93675968f979fd94c8caf8feca394f75, type: 2}
   - {fileID: 11400000, guid: c6284f3d32c62d048a5f79e7c09f0f1b, type: 2}
   _plantedCards: []
+  _resourceCounter: {fileID: 2001985210}
 --- !u!224 &904691221
 RectTransform:
   m_ObjectHideFlags: 0
@@ -974,6 +975,7 @@ GameObject:
   - component: {fileID: 1181761337}
   - component: {fileID: 1181761336}
   - component: {fileID: 1181761335}
+  - component: {fileID: 1181761338}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1042,6 +1044,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1181761338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181761334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a160a8158ed6c1047b298c3654c7637e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1313369886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,6 +1330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resources: 0
+  _startResources: 5
   _recourcesText: {fileID: 2001985208}
 --- !u!1 &2008200153
 GameObject:

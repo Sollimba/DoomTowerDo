@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -11,6 +13,11 @@ public class ResourceCounter : MonoBehaviour
     private static ResourceCounter _instance;
 
     public static ResourceCounter Instance {  get { return _instance; } }
+
+    public int Resources // Добавленное свойство
+    {
+        get { return _resources; }
+    }
 
     private void Awake()
     {
