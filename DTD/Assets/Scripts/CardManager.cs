@@ -96,6 +96,7 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
             {
                 _controllerBuilding.Grid[(int)_draggingBuilding.transform.position.x, (int)_draggingBuilding.transform.position.z] = _building;
                 _building.ResetColor();
+                _draggingBuilding.GetComponent<BoxCollider>().enabled = true;
 
                 WorkingTransition workingTransition = _draggingBuilding.GetComponent<WorkingTransition>();
                 workingTransition.IsBuildingPlaced = true;

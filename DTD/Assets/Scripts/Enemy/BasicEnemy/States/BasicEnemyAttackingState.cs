@@ -15,6 +15,7 @@ public class BasicEnemyAttackingState : State
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Enemy collided with: " + other.name);
         Building building = other.GetComponent<Building>();
         if (building != null)
         {

@@ -53,18 +53,30 @@ public class CardHolderManager : MonoBehaviour
     {
         for (int i = 0; i < _cardsAmmount; i++)
         {
+            Transform iconTransform = _plantedCards[i].transform.Find("Icon");
+            SpriteRenderer iconRenderer = iconTransform?.GetComponent<SpriteRenderer>();
+            Image mainImage = _plantedCards[i].GetComponent<Image>();
+            CardManager cardManager = _plantedCards[i].GetComponent<CardManager>();
+
+            if (iconRenderer == null || mainImage == null || cardManager == null)
+            {
+                Debug.LogWarning($"Card {i} is missing components.");
+                continue;
+            }
+
             if (_cardSO[i].cost > _resourceCounter.Resources)
             {
-                _plantedCards[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(132, 132, 132, 255);
-                _plantedCards[i].GetComponent<Image>().color = Color.gray;
-                _plantedCards[i].GetComponent<CardManager>().IsAbleToPlant = false;
+                iconRenderer.color = new Color(132f / 255f, 132f / 255f, 132f / 255f, 1f); // нормализуем 0-1
+                mainImage.color = Color.gray;
+                cardManager.IsAbleToPlant = false;
             }
             else
             {
-                _plantedCards[i].transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(255, 255, 255, 255);
-                _plantedCards[i].GetComponent<Image>().color = Color.white;
-                _plantedCards[i].GetComponent<CardManager>().IsAbleToPlant = true;
+                iconRenderer.color = Color.white;
+                mainImage.color = Color.white;
+                cardManager.IsAbleToPlant = true;
             }
         }
     }
+
 }
