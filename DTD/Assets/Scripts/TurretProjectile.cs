@@ -7,6 +7,7 @@ public class TurretProjectile : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private int _damage;
     [SerializeField] private int _resourceReward = 1;
+    [SerializeField][Range(0f, 1f)] private float _resourceChance = 0.7f;
 
     private void Awake()
     {
@@ -25,8 +26,11 @@ public class TurretProjectile : MonoBehaviour
         {
             enemySettings.ReceiveDamage(_damage);
 
-            // Добавляем ресурсы за каждое попадание
-            ResourceCounter.Instance.ReceiveResources(_resourceReward);
+            // 70% шанс получить ресурс
+            if (Random.value <= _resourceChance)
+            {
+                ResourceCounter.Instance.ReceiveResources(_resourceReward);
+            }
 
             Destroy(this.gameObject);
         }

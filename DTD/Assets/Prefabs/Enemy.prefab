@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbf19b83322b4e4a9f7ac75d7d98ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 10
+  _maxHealth: 8
   _healthBar: {fileID: 462202420825433170}
   _healthBarImage: {fileID: 1620568065006332140}
 --- !u!114 &1148425651201893329
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transition:
   - {fileID: -3246759285023871668}
-  _moveSpeed: 3
+  _moveSpeed: 2
   CanMove: 1
 --- !u!114 &5111293685491716081
 MonoBehaviour:

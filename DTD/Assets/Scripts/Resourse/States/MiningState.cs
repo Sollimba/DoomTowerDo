@@ -13,7 +13,7 @@ public class MiningState : State
 
     private IEnumerator Mine ()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         _resourceCounter.ReceiveResources(1);
         StartCoroutine(Mine());
     }
