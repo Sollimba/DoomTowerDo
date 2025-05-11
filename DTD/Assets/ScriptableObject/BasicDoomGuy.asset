@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: BasicDoomGuy
   m_EditorClassIdentifier: 
   icone: {fileID: 21300000, guid: ab0d9136774ebb942b8330e657f08ddd, type: 3}
-  prefab: {fileID: 7419986471164922924, guid: 236c12c19d1e49d41b19e9a0dc868d00, type: 3}
+  prefab: {fileID: 4539279740415520432, guid: a51875cd116e1bb418637862fe038d04, type: 3}
   cost: 4
