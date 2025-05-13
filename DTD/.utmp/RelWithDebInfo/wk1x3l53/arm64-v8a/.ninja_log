@@ -1,0 +1,12 @@
+# ninja log v5
+34	492	7688744086208836	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	7d86e672feecf5b2
+493	953	7688744089543134	G:/unityproject/DoomTowerDo/DTD/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/wk1x3l53/obj/arm64-v8a/libswappywrapper.so	aac06d3db732ded
+6	969	7688744090840118	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	dd52606d4fb89a19
+18	975	7688744090659161	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	26ddc85f00c58c95
+26	982	7688744091066528	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	3760f56ffc907b3c
+14	1060	7688744091837040	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	df864eb2e2df2c0
+30	1087	7688744092084972	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	95146587f5b663e7
+10	1099	7688744092240716	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	a38ab0acc9421ca1
+21	1260	7688744093850495	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	5a54b22857bbabdd
+1	1336	7688744094642984	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	c32af20dd7040f61
+1336	1693	7688744097727539	G:/unityproject/DoomTowerDo/DTD/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/wk1x3l53/obj/arm64-v8a/libgame.so	f8f13ca1148abb22
