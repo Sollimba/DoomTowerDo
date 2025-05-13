@@ -14,6 +14,29 @@ public class WaveSpawner : MonoBehaviour
     private int _currentWaveIndex;
     private int _enemiesLeftToSpawn;
 
+    private void Update()
+    {
+        // Проверка: последняя волна + все враги уничтожены
+        if (_currentWaveIndex == _waves.Length - 1 && _enemiesLeftToSpawn == 0)
+        {
+            bool allClear = true;
+            foreach (var line in _lineControllers)
+            {
+                if (line.EnemiesAlive > 0)
+                {
+                    allClear = false;
+                    break;
+                }
+            }
+
+            if (allClear)
+            {
+                VictoryUIManager.Instance.ShowVictory();
+                enabled = false; // отключить спавнер
+            }
+        }
+    }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)

@@ -10,6 +10,9 @@ public class Building : MonoBehaviour
     [SerializeField] private GameObject _healthBar;
     [SerializeField] private Image _healthBarImage;
 
+    [SerializeField] private int _buildCost;
+    public int BuildCost => _buildCost;
+
 
     public int CurrentHealth { get; private set; }
 
@@ -19,6 +22,11 @@ public class Building : MonoBehaviour
     {
         CurrentHealth = _maxHealth;
         _healthBar.SetActive(false);
+    }
+
+    public void SetBuildCost(int cost)
+    {
+        _buildCost = cost;
     }
 
     public void SetColor(bool isAvailableToBuild)

@@ -14,12 +14,15 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
 
     private GameObject _draggingBuilding;
     private Building _building;
+    private Building hoveredBuildingToDelete;
 
     private Vector2Int _gridSize = new Vector2Int(15, 10); //размер пол€
     private bool _isAvailableToBuild;
 
     private ControllerBuilding _controllerBuilding;
     private ResourceCounter _resourceCounter;
+
+    [SerializeField] private GameObject floatingTextPrefab;
 
     public bool IsAbleToPlant { get; set; }
 
@@ -32,34 +35,49 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (IsAbleToPlant)
+        if (hoveredBuildingToDelete != null)
         {
-            if (_draggingBuilding != null)
+            hoveredBuildingToDelete.ResetColor();
+            hoveredBuildingToDelete = null;
+        }
+        if (IsAbleToPlant && _draggingBuilding != null)
+        {
+            var groundPlane = new Plane(Vector3.up, Vector3.zero);
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (groundPlane.Raycast(ray, out float pos))
             {
-                var groundPlane = new Plane(Vector3.up, Vector3.zero);
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                Vector3 worldPosition = ray.GetPoint(pos);
+                int x = Mathf.RoundToInt(worldPosition.x);
+                int z = Mathf.RoundToInt(worldPosition.z);
 
-                if (groundPlane.Raycast(ray, out float pos))
+                if (_cardSO.prefab.GetComponent<DeleteTool>() != null)
                 {
-                    Vector3 worldPosition = ray.GetPoint(pos);
-                    int x = Mathf.RoundToInt(worldPosition.x);
-                    int z = Mathf.RoundToInt(worldPosition.z);
-
-                    if (x < 0 || x > _gridSize.x - _building.BuildingSize.x)
-                        _isAvailableToBuild = false;
-                    else if (z < 0 || z > _gridSize.y - _building.BuildingSize.y)
-                        _isAvailableToBuild = false;
+                    // ћы используем карту удалени€
+                    if (x >= 0 && x < _gridSize.x && z >= 0 && z < _gridSize.y)
+                    {
+                        hoveredBuildingToDelete = _controllerBuilding.Grid[x, z];
+                        if (hoveredBuildingToDelete != null)
+                            hoveredBuildingToDelete.SetColor(false); // подсветить красным
+                    }
                     else
-                        _isAvailableToBuild = true;
-
-                    if (_isAvailableToBuild && IsPlaceTaken(x, z)) _isAvailableToBuild = false;
-
-                    if ((z % 2 == 1) || (x % 2 == 1)) _isAvailableToBuild = false;
-
-                    _draggingBuilding.transform.position = new Vector3(x, 0, z);
-
-                    _building.SetColor(_isAvailableToBuild);
+                    {
+                        hoveredBuildingToDelete = null;
+                    }
+                    if (hoveredBuildingToDelete != null)
+                        hoveredBuildingToDelete.SetColor(false); // подсветить красным
+                    _draggingBuilding.transform.position = new Vector3(x, 0.1f, z);
+                    return;
                 }
+
+                // ќбычное построение
+                _isAvailableToBuild = (x >= 0 && x <= _gridSize.x - _building.BuildingSize.x) &&
+                                      (z >= 0 && z <= _gridSize.y - _building.BuildingSize.y) &&
+                                      !IsPlaceTaken(x, z) &&
+                                      ((z % 2 == 0) && (x % 2 == 0));
+
+                _draggingBuilding.transform.position = new Vector3(x, 0, z);
+                _building.SetColor(_isAvailableToBuild);
             }
         }
     }
@@ -90,12 +108,39 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
     {
         if (IsAbleToPlant)
         {
-            if (!_isAvailableToBuild)
+            if (_cardSO.prefab.GetComponent<DeleteTool>() != null)
+            {
+                // ќбработка удалени€
+                if (hoveredBuildingToDelete != null)
+                {
+                    Vector3 pos = hoveredBuildingToDelete.transform.position;
+                    _controllerBuilding.Grid[(int)pos.x, (int)pos.z] = null;
+                    int refundAmount = hoveredBuildingToDelete.BuildCost / 2;
+                    _resourceCounter.ReceiveResources(refundAmount);
+
+                    if (floatingTextPrefab != null)
+                    {
+                        GameObject popup = Instantiate(floatingTextPrefab, pos + Vector3.up * 2f, Quaternion.identity);
+                        popup.GetComponent<FloatingText>().SetText($"+{refundAmount}");
+                    }
+
+                    Destroy(hoveredBuildingToDelete.gameObject);
+                }
+
                 Destroy(_draggingBuilding);
+                hoveredBuildingToDelete = null;
+                return;
+            }
+
+            if (!_isAvailableToBuild)
+            {
+                Destroy(_draggingBuilding);
+            }
             else
             {
                 _controllerBuilding.Grid[(int)_draggingBuilding.transform.position.x, (int)_draggingBuilding.transform.position.z] = _building;
                 _building.ResetColor();
+                _building.SetBuildCost(_cardSO.cost);
                 _draggingBuilding.GetComponent<BoxCollider>().enabled = true;
 
                 WorkingTransition workingTransition = _draggingBuilding.GetComponent<WorkingTransition>();
