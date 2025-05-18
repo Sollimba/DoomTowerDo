@@ -53,6 +53,7 @@ public class Building : MonoBehaviour
         _healthBarImage.fillAmount = (float)CurrentHealth / (float)_maxHealth;
 
         if (CurrentHealth < 1)
+
             DestroyBuilding();
     }
 

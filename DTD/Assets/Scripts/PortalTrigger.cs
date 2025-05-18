@@ -8,7 +8,7 @@ public class PortalTrigger : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            PlayerHealth.Instance.TakeDamage(damageToPlayer);
+            UIManager.Instance.TakeDamage(damageToPlayer);
             Destroy(other.gameObject);
         }
     }

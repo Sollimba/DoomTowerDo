@@ -41,7 +41,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         _deathScreen.SetActive(true);
-        Time.timeScale = 0f; // Остановить игру
+        Time.timeScale = 0f;
     }
 
     public void RestartGame()

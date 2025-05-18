@@ -33,7 +33,7 @@ public class WaveSpawner : MonoBehaviour
 
             if (allClear)
             {
-                VictoryUIManager.Instance.ShowVictory();
+                UIManager.Instance.ShowVictory();
                 enabled = false; // отключить спавнер
             }
         }
@@ -56,7 +56,7 @@ public class WaveSpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemyInWave()
     {
-        if (_enemiesLeftToSpawn > 0)
+        if (_enemiesLeftToSpawn > 0 && _currentEnemyIndex < _waves[_currentWaveIndex].WaveSettings.Length)
         {
             yield return new WaitForSeconds(_waves[_currentWaveIndex]
                 .WaveSettings[_currentEnemyIndex]
@@ -67,14 +67,12 @@ public class WaveSpawner : MonoBehaviour
 
             Vector3 spawnPosition = spawnerTransform.position;
 
-            // Спавним эффект с поворотом по X = -90 градусов
             if (_spawnEffect != null)
             {
                 Quaternion spawnRotation = Quaternion.Euler(-90f, 0f, 0f);
                 Instantiate(_spawnEffect, spawnPosition, spawnRotation);
             }
 
-            //Ждём 1 секунду после эффекта, затем спавним врага
             yield return new WaitForSeconds(1f);
 
             Instantiate(_waves[_currentWaveIndex]
@@ -86,6 +84,7 @@ public class WaveSpawner : MonoBehaviour
 
             _enemiesLeftToSpawn--;
             _currentEnemyIndex++;
+
             StartCoroutine(SpawnEnemyInWave());
         }
         else
@@ -95,10 +94,12 @@ public class WaveSpawner : MonoBehaviour
                 _currentWaveIndex++;
                 _enemiesLeftToSpawn = _waves[_currentWaveIndex].WaveSettings.Length;
                 _currentEnemyIndex = 0;
+
+                // Запуск новой волны
+                StartCoroutine(SpawnEnemyInWave());
             }
         }
     }
-
 
 
     public void LaunchWave()
