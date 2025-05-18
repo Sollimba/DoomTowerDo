@@ -62,17 +62,24 @@ public class WaveSpawner : MonoBehaviour
                 .WaveSettings[_currentEnemyIndex]
                 .SpawnDelay);
 
-            var spawnPosition = _waves[_currentWaveIndex]
-                .WaveSettings[_currentEnemyIndex].NeededSpawner.transform.position;
+            Transform spawnerTransform = _waves[_currentWaveIndex]
+                .WaveSettings[_currentEnemyIndex].NeededSpawner.transform;
+
+            Vector3 spawnPosition = spawnerTransform.position;
+
+            // Спавним эффект с поворотом по X = -90 градусов
+            if (_spawnEffect != null)
+            {
+                Quaternion spawnRotation = Quaternion.Euler(-90f, 0f, 0f);
+                Instantiate(_spawnEffect, spawnPosition, spawnRotation);
+            }
+
+            //Ждём 1 секунду после эффекта, затем спавним врага
+            yield return new WaitForSeconds(1f);
 
             Instantiate(_waves[_currentWaveIndex]
                 .WaveSettings[_currentEnemyIndex].Enemy,
                 spawnPosition, Quaternion.identity);
-
-            if (_spawnEffect != null)
-            {
-                Instantiate(_spawnEffect, spawnPosition, Quaternion.identity);
-            }
 
             _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
                 .NeededSpawner.GetComponent<LineEnemyDetector>().EnemiesAlive++;
@@ -91,6 +98,7 @@ public class WaveSpawner : MonoBehaviour
             }
         }
     }
+
 
 
     public void LaunchWave()
