@@ -260,6 +260,7 @@ MonoBehaviour:
   _maxHealth: 6
   _healthBar: {fileID: 454279022277324025}
   _healthBarImage: {fileID: 1336461087650295808}
+  _buildCost: 0
 --- !u!114 &6631699673510191721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +413,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c8ce56ff463b7b54bbfa1f3a33ea2b4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

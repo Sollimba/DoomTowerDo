@@ -16,6 +16,8 @@ public class EnemySettings : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private BasicEnemyWalkingState _walkingState;
 
+    [SerializeField] private GameObject _bloodEffectPrefab;
+
     private bool _isSlowed = false;
     private bool _isPoisoned = false;
 
@@ -39,7 +41,10 @@ public class EnemySettings : MonoBehaviour
         _healthBarImage.fillAmount = (float)_currentHealth / _maxHealth;
 
         if (_currentHealth < 1)
+        {
+            Instantiate(_bloodEffectPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
     }
 
     public void StartSlowEffect(float multiplier, float duration, Color slowColor)

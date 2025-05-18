@@ -101,7 +101,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Power: 1
+    - _Power: 2.3
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Scale: 2.5
