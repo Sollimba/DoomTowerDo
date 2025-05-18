@@ -14,6 +14,8 @@ public class WaveSpawner : MonoBehaviour
     private int _currentWaveIndex;
     private int _enemiesLeftToSpawn;
 
+    [SerializeField] private GameObject _spawnEffect;
+
     private void Update()
     {
         // ѕроверка: последн€€ волна + все враги уничтожены
@@ -59,12 +61,22 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(_waves[_currentWaveIndex]
                 .WaveSettings[_currentEnemyIndex]
                 .SpawnDelay);
+
+            var spawnPosition = _waves[_currentWaveIndex]
+                .WaveSettings[_currentEnemyIndex].NeededSpawner.transform.position;
+
             Instantiate(_waves[_currentWaveIndex]
                 .WaveSettings[_currentEnemyIndex].Enemy,
-                _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
-                .NeededSpawner.transform.position, Quaternion.identity);
+                spawnPosition, Quaternion.identity);
+
+            if (_spawnEffect != null)
+            {
+                Instantiate(_spawnEffect, spawnPosition, Quaternion.identity);
+            }
+
             _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
                 .NeededSpawner.GetComponent<LineEnemyDetector>().EnemiesAlive++;
+
             _enemiesLeftToSpawn--;
             _currentEnemyIndex++;
             StartCoroutine(SpawnEnemyInWave());
@@ -79,6 +91,7 @@ public class WaveSpawner : MonoBehaviour
             }
         }
     }
+
 
     public void LaunchWave()
     {
