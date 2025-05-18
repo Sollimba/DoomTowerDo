@@ -1,25 +1,44 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
     [SerializeField] private Waves[] _waves;
     [SerializeField] private LineEnemyDetector[] _lineControllers;
-    public LineEnemyDetector[] LineControllers { get => _lineControllers; }
+    public LineEnemyDetector[] LineControllers => _lineControllers;
 
     private static WaveSpawner _instance;
-    public static WaveSpawner Instance { get { return _instance; } }
+    public static WaveSpawner Instance => _instance;
+
     private int _currentEnemyIndex;
     private int _currentWaveIndex;
     private int _enemiesLeftToSpawn;
+    private bool _waveInProgress = false;
+    private bool _waitingForNextWave = false;
 
     [SerializeField] private GameObject _spawnEffect;
 
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+            Destroy(gameObject);
+        else
+            _instance = this;
+    }
+
+    private void Start()
+    {
+        if (_waves.Length > 0)
+        {
+            _enemiesLeftToSpawn = _waves[0].WaveSettings.Length;
+            StartCoroutine(SpawnEnemyInWave());
+            _waveInProgress = true;
+        }
+    }
+
     private void Update()
     {
-        // Проверка: последняя волна + все враги уничтожены
-        if (_currentWaveIndex == _waves.Length - 1 && _enemiesLeftToSpawn == 0)
+        if (_waveInProgress && _enemiesLeftToSpawn == 0)
         {
             bool allClear = true;
             foreach (var line in _lineControllers)
@@ -33,38 +52,31 @@ public class WaveSpawner : MonoBehaviour
 
             if (allClear)
             {
-                UIManager.Instance.ShowVictory();
-                enabled = false; // отключить спавнер
+                _waveInProgress = false;
+
+                if (_currentWaveIndex == _waves.Length - 1)
+                {
+                    UIManager.Instance.ShowVictory();
+                    enabled = false;
+                }
+                else if (!_waitingForNextWave)
+                {
+                    _waitingForNextWave = true;
+                    StartCoroutine(StartNextWaveAfterDelay());
+                }
             }
         }
     }
 
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-            Destroy(this.gameObject);
-        else
-            _instance = this;
-    }
-
-    private void Start()
-    {
-        if (_waves.Length > 0)
-            _enemiesLeftToSpawn = _waves[0].WaveSettings.Length;
-        LaunchWave();
-    }
-
     private IEnumerator SpawnEnemyInWave()
     {
-        if (_enemiesLeftToSpawn > 0 && _currentEnemyIndex < _waves[_currentWaveIndex].WaveSettings.Length)
+        while (_enemiesLeftToSpawn > 0 && _currentEnemyIndex < _waves[_currentWaveIndex].WaveSettings.Length)
         {
-            yield return new WaitForSeconds(_waves[_currentWaveIndex]
-                .WaveSettings[_currentEnemyIndex]
-                .SpawnDelay);
+            var waveSetting = _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex];
 
-            Transform spawnerTransform = _waves[_currentWaveIndex]
-                .WaveSettings[_currentEnemyIndex].NeededSpawner.transform;
+            yield return new WaitForSeconds(waveSetting.SpawnDelay);
 
+            Transform spawnerTransform = waveSetting.NeededSpawner.transform;
             Vector3 spawnPosition = spawnerTransform.position;
 
             if (_spawnEffect != null)
@@ -75,38 +87,28 @@ public class WaveSpawner : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            Instantiate(_waves[_currentWaveIndex]
-                .WaveSettings[_currentEnemyIndex].Enemy,
-                spawnPosition, Quaternion.identity);
-
-            _waves[_currentWaveIndex].WaveSettings[_currentEnemyIndex]
-                .NeededSpawner.GetComponent<LineEnemyDetector>().EnemiesAlive++;
+            Instantiate(waveSetting.Enemy, spawnPosition, Quaternion.identity);
+            waveSetting.NeededSpawner.GetComponent<LineEnemyDetector>().EnemiesAlive++;
 
             _enemiesLeftToSpawn--;
             _currentEnemyIndex++;
-
-            StartCoroutine(SpawnEnemyInWave());
-        }
-        else
-        {
-            if (_currentWaveIndex < _waves.Length - 1)
-            {
-                _currentWaveIndex++;
-                _enemiesLeftToSpawn = _waves[_currentWaveIndex].WaveSettings.Length;
-                _currentEnemyIndex = 0;
-
-                // Запуск новой волны
-                StartCoroutine(SpawnEnemyInWave());
-            }
         }
     }
 
-
-    public void LaunchWave()
+    private IEnumerator StartNextWaveAfterDelay()
     {
+        yield return new WaitForSeconds(2f); // Небольшая пауза перед новой волной (можно убрать)
+
+        _currentWaveIndex++;
+        _currentEnemyIndex = 0;
+        _enemiesLeftToSpawn = _waves[_currentWaveIndex].WaveSettings.Length;
+
         StartCoroutine(SpawnEnemyInWave());
+        _waveInProgress = true;
+        _waitingForNextWave = false;
     }
 }
+
 
 [System.Serializable]
 public class Waves

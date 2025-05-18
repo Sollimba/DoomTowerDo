@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +19,21 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
 
     private bool _isPaused = false;
+
+    [SerializeField] private AudioSource musicSource;
+
+    void Start()
+    {
+        if (PlayerPrefs.GetInt("MusicOn", 1) == 1)
+        {
+            musicSource.loop = true;
+            SoundManager.PlaySound(SoundType.BackgroundMusic, musicSource);
+        }
+        else
+        {
+            musicSource.Stop();
+        }
+    }
 
     private void Awake()
     {

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using SmallHedge.SoundManager;
 
 public class UIMenu : MonoBehaviour
 {
@@ -11,26 +13,32 @@ public class UIMenu : MonoBehaviour
 
     [Header("Sound Toggles")]
     [SerializeField] private Button musicToggleButton;
-    [SerializeField] private Button sfxToggleButton;
 
     private bool isMusicOn = true;
-    private bool isSFXOn = true;
+
+    [SerializeField] private AudioSource musicSource;
 
     private void Awake()
     {
         // Загрузка сохранённых значений
         isMusicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
-        isSFXOn = PlayerPrefs.GetInt("SFXOn", 1) == 1;
     }
 
     private void Start()
     {
         UpdateSoundButtons();
+
+        if (isMusicOn && musicSource != null && !musicSource.isPlaying)
+        {
+            SoundManager.PlaySound(SoundType.BackgroundMusicManu, musicSource);
+            musicSource.loop = true;
+            musicSource.Play();
+        }
     }
 
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("lvl_1");
     }
 
     public void ExitGame()
@@ -54,27 +62,28 @@ public class UIMenu : MonoBehaviour
     {
         isMusicOn = !isMusicOn;
         PlayerPrefs.SetInt("MusicOn", isMusicOn ? 1 : 0);
+        PlayerPrefs.Save();
+
+        if (isMusicOn)
+        {
+            musicSource.Play();
+        }
+        else
+        {
+            musicSource.Stop();
+        }
+
         UpdateSoundButtons();
-        // AudioManager.Instance.SetMusicEnabled(isMusicOn);
     }
 
-    public void ToggleSFX()
-    {
-        isSFXOn = !isSFXOn;
-        PlayerPrefs.SetInt("SFXOn", isSFXOn ? 1 : 0);
-        UpdateSoundButtons();
-        // AudioManager.Instance.SetSFXEnabled(isSFXOn);
-    }
 
     private void UpdateSoundButtons()
     {
         if (musicToggleButton != null)
-            musicToggleButton.GetComponentInChildren<Text>().text = isMusicOn ? "Музыка: ВКЛ" : "Музыка: ВЫКЛ";
+            musicToggleButton.GetComponentInChildren<TMP_Text>().text = isMusicOn ? "Музыка: ВКЛ" : "Музыка: ВЫКЛ";
 
-        if (sfxToggleButton != null)
-            sfxToggleButton.GetComponentInChildren<Text>().text = isSFXOn ? "Звуки: ВКЛ" : "Звуки: ВЫКЛ";
     }
 
     public bool IsMusicOn => isMusicOn;
-    public bool IsSFXOn => isSFXOn;
+
 }

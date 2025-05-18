@@ -101,9 +101,7 @@ public class EnemySettings : MonoBehaviour
         if (_waveSpawner != null)
         {
             _lineEnemyDetector.EnemiesAlive--;
-            int enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
-            if (enemiesLeft == 0)
-                _waveSpawner.LaunchWave();
+            // ׃האכÿול גûחמג _waveSpawner.LaunchWave();
         }
     }
 }
