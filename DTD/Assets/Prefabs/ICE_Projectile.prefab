@@ -71,7 +71,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 0.5
   _damage: 1
-  _resourceReward: 1
+  _resourceReward: 2
   _resourceChance: 1
   slowDuration: 3
   slowMultiplier: 0.5

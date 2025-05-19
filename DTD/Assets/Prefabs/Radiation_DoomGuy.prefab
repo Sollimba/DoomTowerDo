@@ -375,9 +375,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buildingSize: {x: 2, y: 2}
   _spriteRenderer: {fileID: 8945392440479788054}
-  _maxHealth: 7
+  _maxHealth: 8
   _healthBar: {fileID: 4352056755721450937}
   _healthBarImage: {fileID: 8636122407523105411}
+  _buildCost: 0
 --- !u!114 &4597306392669129066
 MonoBehaviour:
   m_ObjectHideFlags: 0

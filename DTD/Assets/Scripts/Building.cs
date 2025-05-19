@@ -13,8 +13,6 @@ public class Building : MonoBehaviour
     [SerializeField] private int _buildCost;
     public int BuildCost => _buildCost;
 
-    [SerializeField] private GameObject _bloodEffectPrefab;
-
 
     public int CurrentHealth { get; private set; }
 

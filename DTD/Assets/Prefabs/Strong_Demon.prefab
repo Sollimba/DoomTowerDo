@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbf19b83322b4e4a9f7ac75d7d98ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 20
+  _maxHealth: 25
   _healthBar: {fileID: 8860353769142166848}
   _healthBarImage: {fileID: 5707596275509161453}
   _bloodEffectPrefab: {fileID: 6417322397977287209, guid: e0f24f00dc6a80e4e9cd4d8c9d04e86d, type: 3}
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transition:
   - {fileID: 6948375213876002648}
-  _moveSpeed: 0.5
+  _moveSpeed: 0.8
   CanMove: 1
 --- !u!114 &8485372020793985080
 MonoBehaviour:
