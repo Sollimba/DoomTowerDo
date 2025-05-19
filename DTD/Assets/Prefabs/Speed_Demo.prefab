@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _transition:
   - {fileID: 5512844970720112810}
-  _damage: 5
+  _damage: 6
 --- !u!114 &2757045293036335834
 MonoBehaviour:
   m_ObjectHideFlags: 0
