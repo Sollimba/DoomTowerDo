@@ -10,6 +10,10 @@ public class EnemySettings : MonoBehaviour
     [SerializeField] private GameObject _healthBar;
     [SerializeField] private Image _healthBarImage;
 
+    [Header("Rewards")]
+    [SerializeField] private int _resourceReward = 1;
+
+
     private WaveSpawner _waveSpawner;
     private LineEnemyDetector _lineEnemyDetector;
 
@@ -17,6 +21,7 @@ public class EnemySettings : MonoBehaviour
     private BasicEnemyWalkingState _walkingState;
 
     [SerializeField] private GameObject _bloodEffectPrefab;
+
 
     private bool _isSlowed = false;
     private bool _isPoisoned = false;
@@ -43,6 +48,7 @@ public class EnemySettings : MonoBehaviour
         if (_currentHealth < 1)
         {
             Instantiate(_bloodEffectPrefab, transform.position, Quaternion.identity);
+            ResourceCounter.Instance.ReceiveResources(_resourceReward);
             Destroy(gameObject);
         }
     }

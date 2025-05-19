@@ -2469,7 +2469,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -420.16, y: -76}
+  m_AnchoredPosition: {x: -420.15997, y: -76}
   m_SizeDelta: {x: 842.69, y: 129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &669294103
@@ -3673,6 +3673,7 @@ MonoBehaviour:
   _deathPanel: {fileID: 824197865}
   _pausePanel: {fileID: 2136195463}
   musicSource: {fileID: 753039303}
+  _cardBar: {fileID: 379283154}
 --- !u!1 &918282703
 GameObject:
   m_ObjectHideFlags: 0
@@ -7657,7 +7658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resources: 0
-  _startResources: 6
+  _startResources: 8
   _recourcesText: {fileID: 2001985208}
 --- !u!1 &2008200153
 GameObject:
@@ -7683,7 +7684,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008200153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5ad3decff3da064da0bd98621fabdc6, type: 3}
   m_Name: 
@@ -7698,6 +7699,15 @@ MonoBehaviour:
       _spawnDelay: 5
     - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
       _neededSpawner: {fileID: 2099603222}
+      _spawnDelay: 3
+    - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
+      _neededSpawner: {fileID: 1883859595}
+      _spawnDelay: 5
+    - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
+      _neededSpawner: {fileID: 2099603222}
+      _spawnDelay: 3
+    - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
+      _neededSpawner: {fileID: 1006031606}
       _spawnDelay: 8
   - _waveSettings:
     - _enemy: {fileID: 2138344006636583521, guid: a2d875c78b58e834587ef6ca8a38372a, type: 3}
@@ -7711,7 +7721,13 @@ MonoBehaviour:
       _spawnDelay: 5
     - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
       _neededSpawner: {fileID: 310849401}
+      _spawnDelay: 8
+    - _enemy: {fileID: 2138344006636583521, guid: a2d875c78b58e834587ef6ca8a38372a, type: 3}
+      _neededSpawner: {fileID: 1006031606}
       _spawnDelay: 5
+    - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
+      _neededSpawner: {fileID: 310849401}
+      _spawnDelay: 6
   - _waveSettings:
     - _enemy: {fileID: 3407800841333811663, guid: e998348bcd97d234481466ad5908561c, type: 3}
       _neededSpawner: {fileID: 1313369886}

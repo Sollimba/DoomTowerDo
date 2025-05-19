@@ -157,9 +157,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 0.5
-  _damage: 1
+  _damage: 2
   _resourceReward: 1
-  _resourceChance: 0.8
+  _resourceChance: 0.1
 --- !u!54 &-6501329471192936014
 Rigidbody:
   m_ObjectHideFlags: 0

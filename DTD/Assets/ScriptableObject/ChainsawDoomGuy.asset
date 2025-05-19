@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90d98972df2a0a849a19f82e1786075b, type: 3}
   m_Name: ChainsawDoomGuy
   m_EditorClassIdentifier: 
-  icone: {fileID: 21300000, guid: e0e3cb118f0dde2459e642a16552b3cf, type: 3}
+  icone: {fileID: 21300000, guid: 77f5ef001a256454f8c36648c964a4a5, type: 3}
   prefab: {fileID: 3945740762864311332, guid: a9a65cbfc58356a459bb35480398ba35, type: 3}
   cost: 12

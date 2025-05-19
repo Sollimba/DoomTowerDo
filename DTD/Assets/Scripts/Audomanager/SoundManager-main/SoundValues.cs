@@ -7,5 +7,6 @@ namespace SmallHedge.SoundManager
     {
         BackgroundMusic,
         BackgroundMusicManu,
+        Victory
     }
 }

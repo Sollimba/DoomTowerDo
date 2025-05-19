@@ -24,3 +24,8 @@ MonoBehaviour:
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 3b2c14e18863858448d431c879ce8722, type: 3}
+  - name: Victory
+    volume: 0.389
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 035a9cf19b54c2d43a941ffd418239fd, type: 3}

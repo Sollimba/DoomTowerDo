@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     private bool _isPaused = false;
 
     [SerializeField] private AudioSource musicSource;
+    [SerializeField] private GameObject _cardBar;
 
     void Start()
     {
@@ -79,13 +80,18 @@ public class UIManager : MonoBehaviour
     private void Die()
     {
         _deathPanel.SetActive(true);
+        _cardBar.SetActive(false);
         Time.timeScale = 0f;
     }
 
     //VICTORY
     public void ShowVictory()
     {
+        if (musicSource != null)
+            musicSource.Stop();
+        SoundManager.PlaySound(SoundType.Victory);
         _victoryPanel.SetActive(true);
+        _cardBar.SetActive(false);
         Time.timeScale = 0f;
     }
 

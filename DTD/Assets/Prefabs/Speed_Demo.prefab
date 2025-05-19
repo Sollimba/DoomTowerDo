@@ -295,6 +295,7 @@ MonoBehaviour:
   _maxHealth: 6
   _healthBar: {fileID: 521814846804528978}
   _healthBarImage: {fileID: 5947250875413877490}
+  _resourceReward: 4
   _bloodEffectPrefab: {fileID: 6417322397977287209, guid: e0f24f00dc6a80e4e9cd4d8c9d04e86d, type: 3}
 --- !u!114 &8084362668434609139
 MonoBehaviour:

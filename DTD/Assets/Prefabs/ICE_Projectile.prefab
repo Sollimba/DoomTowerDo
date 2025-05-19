@@ -72,7 +72,7 @@ MonoBehaviour:
   _moveSpeed: 0.5
   _damage: 1
   _resourceReward: 2
-  _resourceChance: 1
+  _resourceChance: 0.1
   slowDuration: 3
   slowMultiplier: 0.5
   slowColor: {r: 0, g: 1, b: 1, a: 1}
