@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: BackgroundMusic
-    volume: 0.191
+    volume: 0.072
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 7d7d0b9ec83f2cc46ac9deaf70b80c54, type: 3}
     - {fileID: 8300000, guid: a8e024ce1d3d1fa4cbac6e4a474c69c9, type: 3}
   - name: BackgroundMusicManu
-    volume: 0.206
+    volume: 0.069
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 3b2c14e18863858448d431c879ce8722, type: 3}
@@ -29,3 +29,18 @@ MonoBehaviour:
     mixer: {fileID: 0}
     sounds:
     - {fileID: 8300000, guid: 035a9cf19b54c2d43a941ffd418239fd, type: 3}
+  - name: Fair
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: fc97f789586cbd74a8f70aa44f11435f, type: 3}
+  - name: Demon
+    volume: 0.749
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: 535c7e179240a61459c7190ae17fee11, type: 3}
+  - name: BuildPlaced
+    volume: 1
+    mixer: {fileID: 0}
+    sounds:
+    - {fileID: 8300000, guid: cc7e53367eaac7a48ae7e020a4565437, type: 3}

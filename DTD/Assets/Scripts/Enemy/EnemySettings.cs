@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -48,6 +49,7 @@ public class EnemySettings : MonoBehaviour
         if (_currentHealth < 1)
         {
             Instantiate(_bloodEffectPrefab, transform.position, Quaternion.identity);
+            SoundManager.PlaySound(SoundType.Demon);
             ResourceCounter.Instance.ReceiveResources(_resourceReward);
             Destroy(gameObject);
         }

@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using System.Collections;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class TurretAttackingState : State
         while (true)
         {
             Instantiate(_projectile, _projectileSpawnPosition.position, Quaternion.identity);
+            SoundManager.PlaySound(SoundType.Fair);
             yield return new WaitForSeconds(fireRate);
         }
     }

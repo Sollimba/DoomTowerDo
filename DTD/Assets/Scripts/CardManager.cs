@@ -1,3 +1,4 @@
+using SmallHedge.SoundManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -147,6 +148,8 @@ public class CardManager : MonoBehaviour, IDragHandler, IPointerDownHandler, IPo
                 workingTransition.IsBuildingPlaced = true;
 
                 _resourceCounter.SpendResources(_cardSO.cost);
+
+                SoundManager.PlaySound(SoundType.BuildPlaced);
             }
         }
     }

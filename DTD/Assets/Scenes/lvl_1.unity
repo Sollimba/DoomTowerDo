@@ -7684,7 +7684,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2008200153}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5ad3decff3da064da0bd98621fabdc6, type: 3}
   m_Name: 
@@ -7784,27 +7784,6 @@ MonoBehaviour:
       _spawnDelay: 1
     - _enemy: {fileID: 3824591581810518111, guid: 314fb1c1a9a1a5f43a893d2b8c010413, type: 3}
       _neededSpawner: {fileID: 1313369886}
-      _spawnDelay: 3
-    - _enemy: {fileID: 2138344006636583521, guid: a2d875c78b58e834587ef6ca8a38372a, type: 3}
-      _neededSpawner: {fileID: 1883859595}
-      _spawnDelay: 3
-    - _enemy: {fileID: 2138344006636583521, guid: a2d875c78b58e834587ef6ca8a38372a, type: 3}
-      _neededSpawner: {fileID: 1006031606}
-      _spawnDelay: 3
-    - _enemy: {fileID: 3407800841333811663, guid: e998348bcd97d234481466ad5908561c, type: 3}
-      _neededSpawner: {fileID: 1006031606}
-      _spawnDelay: 3
-    - _enemy: {fileID: 3407800841333811663, guid: e998348bcd97d234481466ad5908561c, type: 3}
-      _neededSpawner: {fileID: 1006031606}
-      _spawnDelay: 3
-    - _enemy: {fileID: 3407800841333811663, guid: e998348bcd97d234481466ad5908561c, type: 3}
-      _neededSpawner: {fileID: 1006031606}
-      _spawnDelay: 3
-    - _enemy: {fileID: 2138344006636583521, guid: a2d875c78b58e834587ef6ca8a38372a, type: 3}
-      _neededSpawner: {fileID: 1006031606}
-      _spawnDelay: 3
-    - _enemy: {fileID: 2138344006636583521, guid: a2d875c78b58e834587ef6ca8a38372a, type: 3}
-      _neededSpawner: {fileID: 1006031606}
       _spawnDelay: 3
   _lineControllers:
   - {fileID: 2099603224}
